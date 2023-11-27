@@ -3,8 +3,8 @@ from django.contrib.auth.models import User
 from .models import Profile
 
 # Register your models here.
-# Profile and User Info
 
+# Profile and User Info
 class ProfileInLine(admin.StackedInline):
     model = Profile
 
@@ -14,5 +14,6 @@ class UserAdmin(admin.ModelAdmin):
     fields = ["username"]
     inlines = [ProfileInLine]
 
-# admin.site.register(Profile)
+# admin.site.unregister(User)
+# admin.site.register(User, UserAdmin)
 

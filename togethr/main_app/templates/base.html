@@ -13,14 +13,17 @@
   <header class="navbar-fixed">
     <nav>
       <div class="nav-wrapper">
-        <ul>
-          <li><a href="{% url 'home' %}" class="left brand-logo">&nbsp;&nbsp;Togethr</a></li>
+        <a href="{% url 'home' %}" class="left brand-logo">&nbsp;&nbsp;Togethr</a>
+        <ul class="right">
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'logout' %}">Log Out</a></li>
+          {% else %}
+            <h1>Togethr</h1>
+            <p>"Find Your Crowd, Share Your Passion, Hang out Togethr."</p>
+            <a href="{% url 'login' %}"">Login</a>
+            <a href="{% url 'signup' %}">Sign-up</a>
+          {% endif %}
         </ul>
-        <ul class="right"></ul>
-        <!-- {% if user.is_authenticated %} -->
-        <!-- list of links for mav menu bar, profile, etc. -->
-        <!-- {% else %} -->
-        <!-- {% endif %} -->
       </div>
     </nav>
   </header>
