@@ -1,0 +1,25 @@
+.landing-page {
+    text-align: center;
+    transform: translateY(100%);
+}
+
+.left-brand-logo img {
+    width: 415px;
+    height: 140px;
+    size: fixed;
+}
+
+
+.slogan {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20px;
+    margin: 5;
+}
+
+button {
+    margin: 1px;
+    color: black;
+}
