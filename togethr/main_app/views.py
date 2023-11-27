@@ -19,14 +19,6 @@ def signup(request):
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
 
-# def logging_in(request):
-#     username = request.POST['username']
-#     password = request.POST['password']
-#     user = authenticate(request, username=username, password=password)
-#     if user is not None:
-#         login(request,user)
-#         return redirect('home')
-#     else:
-#         error_message = 'Invalid User or Password - try again'
-#     context = {'form': form, 'error_message': error_message}
-#     return render(request, 'registration/login.html', context)
+def profile_list(request):
+    return render(request, 'profile_list.html') 
+
