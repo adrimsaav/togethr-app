@@ -9,7 +9,6 @@
     size: fixed;
 }
 
-
 .slogan {
     font-size: 20px;
     display: flex;
@@ -23,3 +22,4 @@ button {
     margin: 1px;
     color: black;
 }
+

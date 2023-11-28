@@ -2,9 +2,9 @@
 {% block content %}
 <div class="post-form">
     {% if user.is_authenticated %}
-    <form method="post">
+    <form method="post" action="{% url 'home' %}">  
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form.as_p }}  
         <button type="submit">Post</button>
     </form>
     {% endif %}
