@@ -64,6 +64,15 @@
 </head>
 <body>
   <header class="navbar-fixed">
+  {% if messages %}
+    {% for message in messages %}
+    
+    <div class="alert alert-secondary" role="alert">
+      {{ message }}
+    </div>
+
+    {% endfor %}
+  {% endif%}
     <nav>
       <div class="nav-wrapper">
         <ul class="right">
