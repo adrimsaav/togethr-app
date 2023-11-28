@@ -2,6 +2,8 @@ from django.db import models
 from django.urls import reverse
 from datetime import date
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save 
+
 
 # Create your models here.
 class Profile(models.Model):
@@ -15,3 +17,9 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
 
+# Create Profile when User is created
+# kwargs will accept all our unnecessary data
+def create_profile(sender, instance, created, **kwargs):
+    if created:
+        user_profile = Profile(instance)
+        user_profile.save()
