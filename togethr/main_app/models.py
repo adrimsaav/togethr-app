@@ -14,6 +14,8 @@ class Profile(models.Model):
     # 'blank' is for when you have 0 following
     follows = models.ManyToManyField('self', related_name='followed_by', symmetrical=False, blank=True)
     
+    # allows us to see the last time a profile was updated
+    date_modified = models.DateTimeField(User, auto_now=True)
 
     def __str__(self):
         return self.user.username
