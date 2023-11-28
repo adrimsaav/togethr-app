@@ -4,9 +4,11 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import Profile
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 
 def home(request):
   return render(request, 'home.html')
+
 
 def signup(request):
     error_message = ''
@@ -52,4 +54,21 @@ def profile_list(request):
     return render(request, 'menu/profile_list.html', {"profiles": profiles}) 
 
 
+
+
+def profile_list(request):
+    if request.user.is_authenticated:
+        profiles = Profile.objects.exclude(user=request.user)
+        return render(request, 'menu/profile_list.html', {"profiles":profiles})
+    else:
+        messages.success(request, ("Please Log In Or Sign Up To View This Page"))
+        return redirect('home')
+
+
+def profile(request):
+    return render(request, 'menu/profile.html')
+
+
+def account_settings(request):
+    return render(request, 'menu/account_settings.html')
 
