@@ -80,7 +80,7 @@
           <a href="{% url 'home' %}" class="left-brand-logo"><img src="{% static 'css/photos/togethr-logo.png' %}" style="width: 215px; height: 70px;"></a>
           <nav class="navbar-right">
             <ul class="nav flex-column">
-            <li class="nav-item-profile"><a class="nav-link" href="{% url 'profile' %}">Profile</a></li>
+            <li class="nav-item-profile"><a class="nav-link" href="{% url 'profile' request.user.id %}">Profile</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'account_settings' %}">Account Settings</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'profile_list' %}">Profile List</a></li>
             <li class="nav-item-logout"><a class="nav-link" href="{% url 'logout' %}">Log Out</a></li>           
