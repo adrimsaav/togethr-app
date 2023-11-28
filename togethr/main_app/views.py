@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
+from .models import Profile
 
 def home(request):
   return render(request, 'home.html')
@@ -20,5 +21,6 @@ def signup(request):
     return render(request, 'registration/signup.html', context)
 
 def profile_list(request):
-    return render(request, 'profile_list.html') 
+    profiles = Profile.objects.exclude(user=request.user)
+    return render(request, 'profile_list.html', {"profiles":profiles}) 
 
