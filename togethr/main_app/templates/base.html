@@ -68,11 +68,11 @@
       <div class="nav-wrapper">
         <ul class="right">
           {% if user.is_authenticated %}
-          <a href="{% url 'home' %}" class="left-brand-logo"><img src="static/css/photos/togethr-logo.png" style="width: 215px; height: 70px;"></a>
+          <a href="{% url 'home' %}" class="left-brand-logo"><img src="{% static 'css/photos/togethr-logo.png' %}" style="width: 215px; height: 70px;"></a>
           <nav class="navbar-right">
             <ul class="nav flex-column">
-            <li class="nav-item-profile"><a class="nav-link" href="#">Profile</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Account Settings</a></li>
+            <li class="nav-item-profile"><a class="nav-link" href="{% url 'profile' %}">Profile</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'account_settings' %}">Account Settings</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'profile_list' %}">Profiles List</a></li>
             <li class="nav-item-logout"><a class="nav-link" href="{% url 'logout' %}">Log Out</a></li>           
            </ul>
@@ -80,7 +80,7 @@
           {% else %}
           <div class="landing-page">
             <div class="logo-and-slogan">
-            <a href="{% url 'home' %}" class="left-brand-logo"><img src="static/css/photos/togethr-logo.png"></a>
+            <a href="{% url 'home' %}" class="left-brand-logo"><img src="{% static 'css/photos/togethr-logo.png' %}"></a>
               <p class="slogan">"Find Your Crowd, Share Your Passion, Hang out Togethr."</p>
             </div>
             <a href="{% url 'login' %}"">Login</a>

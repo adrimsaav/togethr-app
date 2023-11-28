@@ -19,6 +19,12 @@ def signup(request):
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
 
+def profile(request):
+    return render(request, 'menu/profile.html')
+
+def account_settings(request):
+    return render(request, 'menu/account_settings.html')
+
 def profile_list(request):
-    return render(request, 'profile_list.html') 
+    return render(request, 'menu/profile_list.html') 
 
