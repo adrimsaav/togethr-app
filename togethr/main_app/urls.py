@@ -7,7 +7,6 @@ urlpatterns = [
   # nav menu
   path('menu/profile/', views.profile, name='profile'),
   path('menu/profile_list/', views.profile_list, name='profile_list'),
-  path('', views.home, name='home'),
   path('menu/account_settings/', views.account_settings, name='account_settings'),
   # account settings page
   path('menu/account/edit_posts', views.edit_posts, name='edit_posts'),
