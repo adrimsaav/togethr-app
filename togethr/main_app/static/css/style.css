@@ -9,7 +9,6 @@
     size: fixed;
 }
 
-
 .slogan {
     font-size: 20px;
     display: flex;
@@ -18,3 +17,53 @@
     height: 20px;
     margin: 5;
 }
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+
+}
+
+h1 {
+    font-weight: bold;
+}
+
+.navbar-right {
+    position: fixed;
+    top: 50%;
+    right: 150px;
+    transform: translateY(-50%);
+    padding: 20px;
+    border: 1px solid rgb(117, 117, 117);
+    font-size: 14px;
+}
+
+.nav.flex-column {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    }
+
+.nav-item {
+    margin-bottom: 10px;
+    text-align: center;
+    border: 1px solid rgb(117, 117, 117);
+    }   
+
+.nav-item-profile {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    text-align: center;
+    border: 1px solid rgb(117, 117, 117);
+    }
+
+
+.nav-item-logout {
+    margin-top: 30px;
+    text-align: center;
+    border: 1px solid rgb(117, 117, 117);
+    }
+    
+.nav-link {
+    text-decoration: none;
+    font-weight: bold;
+    }
