@@ -31,7 +31,7 @@ def home_view(request):
             new_post = form.save(commit=False)
             new_post.user = request.user
             new_post.save()
-            return redirect('home') 
+            return redirect('home')
     else:
         form = PostForm()
     
