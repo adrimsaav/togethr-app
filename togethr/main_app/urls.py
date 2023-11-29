@@ -12,5 +12,6 @@ urlpatterns = [
   path('menu/account/edit_posts', views.edit_posts, name='edit_posts'),
   path('menu/account/edit_profile', views.edit_profile, name='edit_profile'),
   path('menu/account/delete_profile', views.delete_profile, name='delete_profile'),
-
+  # create post from timeline
+  path('timeline/', views.timeline, name='timeline'),
 ]

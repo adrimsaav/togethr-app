@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
-from .models import Profile
+from .models import Profile, Post
+from .forms import PostForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
@@ -10,6 +11,21 @@ from django.contrib.auth import logout
 def home(request):
     return render(request, 'home.html')
 
+@login_required
+def timeline(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = request.user
+            post.save()
+            return redirect('timeline')
+    else:
+        form = PostForm()
+    
+    posts = Post.objects.all().order_by('-created_at') # Order by creation time in descending order
+
+    return render(request, 'timeline.html', {'form': form, 'posts': posts})
 
 def signup(request):
     error_message = ''
