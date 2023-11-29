@@ -5,7 +5,6 @@
     {% if user.is_authenticated %}
         <form method="post" action="{% url 'home' %}">
             {% csrf_token %}
-            {{ form.as_p }}
             <textarea name="content" id="id_content" rows="4" cols="50"></textarea>
             <button type="submit">Post</button>
         </form>
