@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h3 style="color: rgb(222, 81, 81);"> Delete Profile </h3>
+<h3 style="color: rgb(222, 81, 81);">Are you sure you want to delete your profile?</h3>
+
+<form action="{% url 'delete_profile' %}" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Delete" class="btn btn-danger">
+    <a href="{% url 'account_settings' %}" class="btn btn-secondary">Cancel</a>
+</form>
 
 {% endblock %}

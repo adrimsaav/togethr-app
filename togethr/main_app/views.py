@@ -5,9 +5,10 @@ from .models import Profile
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
+from django.contrib.auth import logout
 
 def home(request):
-  return render(request, 'home.html')
+    return render(request, 'home.html')
 
 
 def signup(request):
@@ -58,7 +59,15 @@ def edit_profile(request):
 
 @login_required
 def delete_profile(request):
-    return render(request, 'menu/account/delete_profile.html')
+    if request.method == 'POST':
+        user_profile = request.user.profile
+        user_profile.delete()
+        request.user.delete()  
+        logout(request)  
+        messages.success(request, "Your profile has been deleted.")
+        return redirect('home')  
+    else:
+        return render(request, 'menu/account/delete_profile.html')
 
 
 # nav menu
