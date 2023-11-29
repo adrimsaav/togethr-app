@@ -1,13 +1,15 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
+from .models import Post
+from .forms import PostForm
 from .models import Profile
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 
 def home(request):
-  return render(request, 'home.html')
+    return render(request, 'home.html')
 
 
 def signup(request):
@@ -24,6 +26,29 @@ def signup(request):
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
 
+
+def profile_list(request):
+    if request.user.is_authenticated:
+        profiles = Profile.objects.exclude(user=request.user)
+        return render(request, 'menu/profile_list.html', {"profiles":profiles})
+    else:
+        messages.success(request, ("Please Log In Or Sign Up To View This Page"))
+        return redirect('home')
+
+
+def profile(request, pk):
+    if request.user.is_authenticated:
+        profile = Profile.objects.get(user_id=pk)
+        return render(request, 'menu/profile.html', {"profile":profile})
+    else:
+        messages.success(request, ("Please Log In Or Sign Up To View This Page"))
+        return redirect('home')
+
+
+def account_settings(request):
+    return render(request, 'menu/account_settings.html')
+
+
 # account settings
 @login_required
 def edit_posts(request):
@@ -39,9 +64,6 @@ def delete_profile(request):
 
 
 # nav menu
-@login_required
-def profile(request):
-    return render(request, 'menu/profile.html')
 
 @login_required
 def account_settings(request):
@@ -56,19 +78,25 @@ def profile_list(request):
 
 
 
-def profile_list(request):
-    if request.user.is_authenticated:
-        profiles = Profile.objects.exclude(user=request.user)
-        return render(request, 'menu/profile_list.html', {"profiles":profiles})
+
+@login_required
+def home(request):
+    print("Current user:", request.user)  
+    print("Is authenticated:", request.user.is_authenticated)  
+
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            new_post = form.save(commit=False)
+            new_post.user = request.user  
+            new_post.save()
+            return redirect('home')
+        else:
+            print("Form errors:", form.errors)  
     else:
-        messages.success(request, ("Please Log In Or Sign Up To View This Page"))
-        return redirect('home')
+        form = PostForm()
 
-
-def profile(request):
-    return render(request, 'menu/profile.html')
-
-
-def account_settings(request):
-    return render(request, 'menu/account_settings.html')
+    posts = Post.objects.all().order_by('-created_at')
+    print(posts)
+    return render(request, 'home.html', {'form': form, 'posts': posts})
 
