@@ -4,6 +4,14 @@ from . import views
 urlpatterns = [
   path('', views.home, name='home'),
   path('accounts/signup/', views.signup, name='signup'),
-  path('profile_list/', views.profile_list, name='profile_list'),
+  # nav menu
+  path('menu/profile/', views.profile, name='profile'),
+  path('menu/profile_list/', views.profile_list, name='profile_list'),
   path('', views.home, name='home'),
+  path('menu/account_settings/', views.account_settings, name='account_settings'),
+  # account settings page
+  path('menu/account/edit_posts', views.edit_posts, name='edit_posts'),
+  path('menu/account/edit_profile', views.edit_profile, name='edit_profile'),
+  path('menu/account/delete_profile', views.delete_profile, name='delete_profile'),
+
 ]

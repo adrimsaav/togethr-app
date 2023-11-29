@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    .nav-item-delete {
+    color: rgb(255, 79, 79);
+    font-weight: bold;
+    position: absolute;
+    bottom: 0;
+    padding: 20px;
+    margin-bottom: 40px; /* Optional: Add padding for better aesthetics */
+    box-sizing: border-box;
+    }
+
+    .nav-link-delete{
+    color: rgb(255, 79, 79);
+    text-decoration: none; 
+    }
+</style>
+
+<!-- <h3 style="margin-bottom: 30px;"> Account Settings </h3> -->
+
+{% if user.is_authenticated %}
+<nav class="navbar-settings">
+  <ul class="nav flex-column">
+    <li class="nav-item-settings"><a class="nav-link" href="{% url 'edit_posts' %}">Edit/Delete Posts</a></li>
+    <li class="nav-item-settings"><a class="nav-link" href="{% url 'edit_profile' %}">Edit Bio/Profile Picture/Username</a></li>
+    <li class="nav-item-delete"><a class="nav-link-delete" href="{% url 'delete_profile' %}">Delete Profile</a></li>
+  </ul>
+</nav>
+{% endif %}
+
+{% endblock %}
