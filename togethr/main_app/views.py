@@ -7,7 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 
 def home(request):
-  return render(request, 'home.html')
+    return render(request, 'home.html')
 
 
 def signup(request):
@@ -62,9 +62,6 @@ def delete_profile(request):
 
 
 # nav menu
-# @login_required
-# def profile(request):
-#     return render(request, 'menu/profile.html')
 
 @login_required
 def account_settings(request):
@@ -73,8 +70,8 @@ def account_settings(request):
 @login_required
 def profile_list(request):
     profiles = Profile.objects.exclude(user=request.user)
-
     return render(request, 'menu/profile_list.html', {"profiles": profiles}) 
+
 
 
 
