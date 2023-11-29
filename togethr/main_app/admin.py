@@ -14,7 +14,6 @@ class UserAdmin(admin.ModelAdmin):
     fields = ["username"]
     inlines = [ProfileInLine]
 
-
 # admin.site.unregister(User)
 # admin.site.register(User, UserAdmin)
 
