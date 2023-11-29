@@ -20,6 +20,7 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
 
+
 # Create Profile when User is created
 # kwargs will accept all our unnecessary data
 def create_profile(sender, instance, created, **kwargs):

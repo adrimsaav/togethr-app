@@ -17,7 +17,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('index')
+            return redirect('home')
         else:
             error_message = 'Invalid sign up - try again'
     form = UserCreationForm()
@@ -70,10 +70,5 @@ def account_settings(request):
 @login_required
 def profile_list(request):
     profiles = Profile.objects.exclude(user=request.user)
-
     return render(request, 'menu/profile_list.html', {"profiles": profiles}) 
-
-
-
-
 
