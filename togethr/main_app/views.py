@@ -7,7 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 
 def home(request):
-  return render(request, 'home.html')
+    return render(request, 'home.html')
 
 
 def signup(request):
