@@ -1,7 +1,22 @@
-.landing-page {
-    text-align: center;
-    transform: translateY(100%);
+html, body {
+    height: 100%;
+    margin: 0;
 }
+
+
+.landing-page {
+    background-image: url('/static/css/photos/base_background.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    min-height: 100vh; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
 
 .left-brand-logo img {
     width: 415px;
@@ -20,7 +35,9 @@
 
 body {
     font-family: 'Courier New', Courier, monospace;
-
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 h1 {
