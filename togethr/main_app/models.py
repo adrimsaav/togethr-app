@@ -13,13 +13,13 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
 class Comment(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, db_index=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
     body = models.TextField(max_length=200)
     created_at = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
-        return f"{self.user.username} ({self.created_at: %Y-%m-%d %H:%M}): {self.body}"
+        return f"{self.user.username} ({self.created_at:%Y-%m-%d %H:%M}): {self.body}"
 
 class Profile(models.Model):
     # profile that user can also delete
