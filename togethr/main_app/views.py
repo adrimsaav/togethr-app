@@ -68,12 +68,12 @@ def profile(request, pk):
 
     # Code follow/unfollow button
         if request.method == "POST":
-            current_user_profile = request.user.profile
+            current_profile = request.user.profile
             action = request.POST['follow']
             if action == "unfollow":
-                current_user_profile.follows.remove(profile)
+                current_profile.follows.remove(profile)
             elif action == "follow":
-                current_user_profile.follows.add(profile)
+                current_profile.follows.add(profile)
                 current_user_profile.save()
 
         return render(request, 'menu/profile.html', {"profile":profile})
@@ -99,8 +99,7 @@ def edit_profile(request):
 def delete_profile(request):
     if request.method == 'POST':
         user_profile = request.user.profile
-        user_profile.delete()
-        request.user.delete()  
+        user_profile.delete()  
         logout(request)  
         messages.success(request, "Your profile has been deleted.")
         return redirect('home')  
