@@ -9,7 +9,7 @@ class PostForm(forms.ModelForm):
             'body': ''
         }
         widgets = {
-            'body': forms.Textarea(attrs={'placeholder': 'Create A Post...', 'class': 'rounded'})
+            'body': forms.Textarea(attrs={'placeholder': 'Create A Post...', 'class': 'post-textarea'})
         }
         exclude = ["user", "like",]
 

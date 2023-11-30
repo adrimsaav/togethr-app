@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="timeline">
+
+<div class="timeline-body"> 
     {% if user.is_authenticated %}
-    <div class="create-post-container">
+    <div class="timeline-content-section">
         <form method="post" action="{% url 'timeline' %}" class="post-form">
             {% csrf_token %}
             <input type="hidden" name="post_form" value="1">
@@ -57,6 +58,7 @@
             </div>
         {% endfor %}
     </div>
+</div>
 </div>
 
 {% endblock %}

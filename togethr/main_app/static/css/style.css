@@ -128,79 +128,82 @@ h1 {
 
 /* Timeline styling */
 
-.post {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
-    padding: 15px;
+.timeline-body {
+    background-color: #f4f7f6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    padding: 20px;
+    border-radius: 60px;
 }
 
-.post h3 {
-    margin-top: 0;
-    color: #333;
-}
 
-.post .body {
-    font-size: 14px;
-    color: #666;
-}
-
-.post .created_at {
-    font-size: 12px;
-    color: #999;
-}
-
-.post .comment-form {
-    margin-top: 15px;
-}
-
-button {
-    background-color: #5cb85c;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #449d44;
-}
-
-.create-post-container, .post-form {
-    border: none; 
-}
-
-.create-post-container {
-    border: none;
-    padding: 10px; 
-    position: relative;
-    width: 100%; 
-    max-width: 900px;
-    margin: auto; 
-    height: 50%;
-    
-}
-
-.create-post-textarea {
-    width: 100%; 
-    height: auto; 
-    min-height: 50px; 
-    max-height: 200px; 
+.post-textarea {
+    height: 80px;
+    border-radius: 15px; 
+    border: 1px solid #ccc; 
     padding: 8px; 
 }
 
-.post-button { 
-    background-size: contain;
-    position: absolute;
-    right: 10px; 
-    bottom: 10px;
+.rounded {
+    height: 40px;
+    border-radius: 15px; 
+    border: 1px solid #ccc; 
+    padding: 8px; 
+    margin-top: 250px;
+}
+
+.timeline-content-section, .post {
+    background-color: #f8f8f8; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+    margin-bottom: 10px;
+    padding: 7px;
+    width: 100%;
+    max-width: 600px;
+    border: 4px;
+}
+
+.post-form {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.post-form textarea {
+    margin: 10px 50px; 
+}
+
+.post-button {
+    align-self: center; 
+    padding: 10px 20px;
+    background-color: #6aa9ec; 
+    color: white;
     border: none;
-    width: 30px; 
-    height: 30px;
+    border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 60px;
+}
+
+.post-button:hover {
+    background-color: #0056b3; 
+}
+
+.post {
+    background-color: #f8f8f8; 
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 15px;
+    margin-top: 50px;
+    width: 700px;
+}
+
+.posts {
+    margin-top: 20px;
 }
 
 .post-button:hover {
@@ -246,11 +249,6 @@ button:hover {
     max-width: 800px;
     margin: 0 auto;
 }
-
-.posts {
-    margin-top: 20px;
-}
-
 
 .post-form textarea {
     width: 80%;
