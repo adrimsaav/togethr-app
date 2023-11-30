@@ -6,13 +6,13 @@ urlpatterns = [
   path('accounts/signup/', views.signup, name='signup'),
   path('logout/', views.logout, name='logout'),
   # nav menu
-  path('menu/profile/<int:pk>/', views.profile, name='profile'),
-  path('menu/profile_list/', views.profile_list, name='profile_list'),
-  path('menu/account_settings/', views.account_settings, name='account_settings'),
+  path('profile/<int:pk>/', views.profile, name='profile'),
+  path('profile_list/', views.profile_list, name='profile_list'),
+  path('account_settings/', views.account_settings, name='account_settings'),
   # account settings page
-  path('menu/account/edit_posts', views.edit_posts, name='edit_posts'),
-  path('menu/account/edit_profile', views.edit_profile, name='edit_profile'),
-  path('menu/profile/<int:pk>/delete_profile/', views.ProfileDelete.as_view(), name='delete_profile'),
+  path('account/edit_posts', views.edit_posts, name='edit_posts'),
+  path('account/edit_profile', views.edit_profile, name='edit_profile'),
+  path('profile/<int:pk>/delete_profile/', views.ProfileDelete.as_view(), name='delete_profile'),
   # create post from timeline
   path('timeline/', views.timeline, name='timeline'),
   # track likes for post
