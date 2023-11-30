@@ -26,6 +26,7 @@ def timeline(request):
             if comment_form.is_valid():
                 comment = comment_form.save(commit=False)
                 comment.user = request.user
+                comment.post_id = request.POST.get('post')
                 comment.save()
                 return redirect('timeline')
     else:

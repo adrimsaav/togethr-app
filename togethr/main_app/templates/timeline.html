@@ -31,6 +31,7 @@
                 <form method="post" action="{% url 'timeline' %}">
                     {% csrf_token %}
                     <input type="hidden" name="comment_form" value="1">
+                    <input type="hidden" name="post" value="{{ post.id }}">
                     {{ comment_form.as_p }}
                     <button type="submit">Add Comment</button>
                 </form>                

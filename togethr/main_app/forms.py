@@ -8,6 +8,9 @@ class PostForm(forms.ModelForm):
         labels = {
             'body': ''
         }
+        widgets = {
+            'body': forms.Textarea(attrs={'placeholder': 'Create A Post...', 'style': 'color: #888;'})
+        }
 
 class CommentForm(forms.ModelForm):
     class Meta:
@@ -17,5 +20,5 @@ class CommentForm(forms.ModelForm):
             'body': ''
         }
         widgets = {
-            'body': forms.Textarea(attrs={'rows': 1}),
+            'body': forms.Textarea(attrs={'rows': 1, 'placeholder': 'Comment...', 'style': 'color: #888;'}),
         }
