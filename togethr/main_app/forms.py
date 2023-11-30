@@ -11,6 +11,7 @@ class PostForm(forms.ModelForm):
         widgets = {
             'body': forms.Textarea(attrs={'placeholder': 'Create A Post...', 'class': 'rounded'})
         }
+        exclude = ["user", "like",]
 
 class CommentForm(forms.ModelForm):
     class Meta:
