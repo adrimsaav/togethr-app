@@ -24,14 +24,23 @@
                     {% else %}
                         <a href="{% url 'like_post' post.id %}">Like</a>
                     {% endif %}
-                </small>
+                </small> 
+                <br><br>
                 <!-- for displaying comments on post -->
                 <ul>
                     {% for comment in post.comment_set.all %}
                         <li>
                             <strong>{{ comment.user.username }}</strong>
                             <span>{{ comment.body }}</span> 
-                            <small>Commented on {{ comment.created_at }}</small> 
+                            <small>Commented on {{ comment.created_at }}
+                            ~ {{ comment.likes }} Likes  ~ 
+                            {% if user in comment.like.all %}
+                                <a href="{% url 'like_comment' comment.id %}">Unlike</a>
+                            {% else %}
+                                <a href="{% url 'like_comment' comment.id %}">Like</a>
+                            {% endif %}
+                            </small> 
+                        <br><br>
                         </li>
                     {% endfor %}
                 </ul>
@@ -42,6 +51,7 @@
                     <input type="hidden" name="post_id" value="{{ post.id }}">
                     {{ comment_form.as_p }}
                     <button type="submit">Add Comment</button>
+                </br></br>
                 </form>             
             </div>
         {% endfor %}

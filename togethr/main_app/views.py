@@ -102,6 +102,19 @@ def like_post(request, pk):
         return redirect('home')
 
 
+def like_comment(request, pk):
+    if request.user.is_authenticated:
+        comment = get_object_or_404(Comment, id=pk)
+        if comment.like.filter(id=request.user.id):
+            comment.like.remove(request.user)
+        else:
+            comment.like.add(request.user)
+        return redirect('timeline')
+    else:
+        messages.success(request, ("Please Log In Or Sign Up To View This Page"))
+        return redirect('home')
+
+
 # account settings
 @login_required
 def edit_posts(request):

@@ -23,3 +23,4 @@ class CommentForm(forms.ModelForm):
         widgets = {
             'body': forms.Textarea(attrs={'rows': 1, 'placeholder': 'Comment...', 'class': 'rounded'}),
         }
+        exclude = ["user", "like",]

@@ -14,7 +14,7 @@ class Post(models.Model):
     # Add like object ---> should be ManyToMany
     like = models.ManyToManyField(User, related_name='post_like', blank=True)
 
-    # Keep count of likes
+    # Keep count of likes (posts)
     def likes(self):
         return self.like.count()
 
@@ -23,9 +23,14 @@ class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
     body = models.TextField(max_length=200)
     created_at = models.DateTimeField(auto_now_add=True)
-    
+    like = models.ManyToManyField(User, related_name='comment_like', blank=True)
+
     def __str__(self):
         return f"{self.user.username} ({self.created_at:%Y-%m-%d %H:%M}): {self.body}"
+    
+    # Keep count of likes (comments)
+    def likes(self):
+        return self.like.count()
 
 class Profile(models.Model):
     # profile that user can also delete
