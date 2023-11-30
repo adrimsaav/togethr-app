@@ -49,14 +49,6 @@ h1 {
     border: 1px solid rgb(117, 117, 117);
     }   
 
-.nav-item-profile {
-    margin-top: 30px;
-    margin-bottom: 10px;
-    text-align: center;
-    border: 1px solid rgb(117, 117, 117);
-    }
-
-
 .nav-item-logout {
     margin-top: 30px;
     text-align: center;
