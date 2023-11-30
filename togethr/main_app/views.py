@@ -99,15 +99,16 @@ def edit_profile(request):
 
 @login_required
 def delete_profile(request):
-    if request.method == 'POST':
-        user_profile = request.user.profile
-        user_profile.delete()  
-        
-        logout(request)  
-        messages.success(request, "Your profile has been deleted.")
-        return redirect('home')  
-    else:
-        return render(request, 'menu/account/delete_profile.html')
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            user_profile = request.user.profile
+            user_profile.delete()  
+            request.user.delete()
+            logout(request)  
+            messages.success(request, "Your profile has been deleted.")
+            return redirect('home')  
+        else:
+            return render(request, 'menu/account/delete_profile.html')
 
 
 # nav menu
