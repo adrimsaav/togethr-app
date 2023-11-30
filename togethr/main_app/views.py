@@ -74,7 +74,7 @@ def profile(request, pk):
                 current_profile.follows.remove(profile)
             elif action == "follow":
                 current_profile.follows.add(profile)
-                current_user_profile.save()
+                current_profile.save()
 
         return render(request, 'menu/profile.html', {"profile":profile})
     else:
@@ -100,6 +100,7 @@ def delete_profile(request):
     if request.method == 'POST':
         user_profile = request.user.profile
         user_profile.delete()  
+        
         logout(request)  
         messages.success(request, "Your profile has been deleted.")
         return redirect('home')  
