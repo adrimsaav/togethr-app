@@ -59,3 +59,20 @@ h1 {
     text-decoration: none;
     font-weight: bold;
     }
+
+.timeline {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.posts {
+    margin-top: 20px;
+}
+
+.post {
+    margin-bottom: 20px;
+}
+
+.post-form textarea {
+    width: 80%;
+}
