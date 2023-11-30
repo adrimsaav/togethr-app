@@ -128,6 +128,57 @@ h1 {
 
 /* Timeline styling */
 
+.timeline-body {
+    background-color: rgb(149, 143, 143); 
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    padding: 20px;
+    
+}
+
+.rounded {
+    height: 50px;
+}
+
+.timeline-content-section {
+    width: 100%; 
+    max-width: 700px; 
+    margin: 0 auto; 
+    padding: 0px;
+    border-radius: 8px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    background-color: #fff; 
+    max-height: 300px;
+}
+
+.post-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.post-form input,
+.post-form textarea,
+.post-form button {
+    margin: 10px 0; 
+}
+
+.post-button {
+    align-self: center; 
+    padding: 10px 20px;
+    background-color: #007bff; 
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.post-button:hover {
+    background-color: #0056b3; 
+}
+
 .post {
     background-color: #fff;
     border: 1px solid #ddd;
@@ -135,72 +186,11 @@ h1 {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     margin-bottom: 20px;
     padding: 15px;
+    margin-top: 50px;
 }
 
-.post h3 {
-    margin-top: 0;
-    color: #333;
-}
-
-.post .body {
-    font-size: 14px;
-    color: #666;
-}
-
-.post .created_at {
-    font-size: 12px;
-    color: #999;
-}
-
-.post .comment-form {
-    margin-top: 15px;
-}
-
-button {
-    background-color: #5cb85c;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #449d44;
-}
-
-.create-post-container, .post-form {
-    border: none; 
-}
-
-.create-post-container {
-    border: none;
-    padding: 10px; 
-    position: relative;
-    width: 100%; 
-    max-width: 900px;
-    margin: auto; 
-    height: 50%;
-    
-}
-
-.create-post-textarea {
-    width: 100%; 
-    height: auto; 
-    min-height: 50px; 
-    max-height: 200px; 
-    padding: 8px; 
-}
-
-.post-button { 
-    background-size: contain;
-    position: absolute;
-    right: 10px; 
-    bottom: 10px;
-    border: none;
-    width: 30px; 
-    height: 30px;
-    cursor: pointer;
+.posts {
+    margin-top: 20px;
 }
 
 .post-button:hover {
@@ -246,11 +236,6 @@ button:hover {
     max-width: 800px;
     margin: 0 auto;
 }
-
-.posts {
-    margin-top: 20px;
-}
-
 
 .post-form textarea {
     width: 80%;
