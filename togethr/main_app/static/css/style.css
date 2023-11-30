@@ -16,6 +16,33 @@ html, body {
     align-items: center;
 }
 
+.content-section {
+min-height: 100vh;
+background-color: rgb(65, 62, 62);
+}
+
+.Info1 {
+    color: #333; 
+    font-size: 30px; 
+    text-align: center; 
+    padding: 20px; 
+    margin-top: 50px; 
+}
+
+.content-section {
+    min-height: 50vh; 
+    background-color: #f8f8f8; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+.content-image {
+    max-height: 600px; 
+    height: auto;
+    width: 370px; 
+    display: block;
+    margin: 0 auto;
+}
 .togethr-text {
     color: white; 
     font-weight: bold; 
@@ -55,12 +82,12 @@ html, body {
     size: fixed;
 }
 
-body {
+/* body {
     font-family: 'Courier New', Courier, monospace;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-}
+} */
 
 h1 {
     font-weight: bold;

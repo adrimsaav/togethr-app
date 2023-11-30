@@ -21,11 +21,11 @@
     {% endif %}
     <nav class="nav-wrapper">
       {% if user.is_authenticated %}
-        <a href="{% url 'timeline' %}" class="left-brand-logo">
+        <a href="{% url 'home' %}" class="left-brand-logo">
           <img src="{% static 'css/photos/togethr-logo.png' %}" alt="Togethr Logo" style="width: 215px; height: 70px;">
         </a>
         <ul class="navbar-right nav flex-column">
-          <li class="nav-item"><a class="nav-link" href="{% url 'timeline' %}">Timeline</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Timeline</a></li>
           <li class="nav-item-profile"><a class="nav-link" href="{% url 'profile' request.user.id %}">Profile</a></li>
           <li class="nav-item"><a class="nav-link" href="{% url 'account_settings' %}">Account Settings</a></li>
           <li class="nav-item"><a class="nav-link" href="{% url 'profile_list' %}">Profile List</a></li>
@@ -45,6 +45,11 @@
             <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
             <a href="{% url 'signup' %}" class="btn btn-secondary">Sign-up</a>
           </div>
+        </div>
+        <div class="content-section">
+          <img src="{% static 'css/photos/couple_bridge.jpg' %}" class="content-image">
+          <p class="Info1">Meet people that have similar interests as you.
+          </p>
         </div>
       {% endif %}
   </header>
