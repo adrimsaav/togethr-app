@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
-from .models import Profile, Post, Comment
+from .models import Profile, Post, Comment, User
+from django.views.generic import DeleteView
 from .forms import PostForm, CommentForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -97,17 +98,10 @@ def edit_posts(request):
 def edit_profile(request):
     return render(request, 'menu/account/edit_profile.html')
 
-@login_required
-def delete_profile(request):
-    if request.method == 'POST':
-        user_profile = request.user.profile
-        user_profile.delete()
-        request.user.delete()  
-        logout(request)  
-        messages.success(request, "Your profile has been deleted.")
-        return redirect('home')  
-    else:
-        return render(request, 'menu/account/delete_profile.html')
+class ProfileDelete(LoginRequiredMixin, DeleteView):
+    model = User
+    template_name ='menu/account/delete_profile.html'
+    success_url = '/'
 
 
 # nav menu

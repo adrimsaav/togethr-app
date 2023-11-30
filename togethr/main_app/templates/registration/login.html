@@ -7,7 +7,7 @@
         <img src="{% static 'css/photos/pic3.jpg' %}" class="login-pic">
     </div>
     <div class="login-form-container">
-        <a href="{% url 'home' %}" class="back-home"><< Back to Home</a>
+        <a href="{% url 'home' %}" class="back-home">Back to Home</a>
         <h1>Welcome Back</h1>
         <form method="POST" action="{% url 'login' %}">
             {% csrf_token %}

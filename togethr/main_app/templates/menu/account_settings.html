@@ -24,7 +24,7 @@
   <ul class="nav flex-column">
     <li class="nav-item-settings"><a class="nav-link" href="{% url 'edit_posts' %}">Edit/Delete Posts</a></li>
     <li class="nav-item-settings"><a class="nav-link" href="{% url 'edit_profile' %}">Edit Bio/Profile Picture/Username</a></li>
-    <li class="nav-item-delete"><a class="nav-link-delete" href="{% url 'delete_profile' %}">Delete Profile</a></li>
+    <li class="nav-item-delete"><a class="nav-link-delete" href="{% url 'delete_profile' user.pk %}">Delete Profile</a></li>
   </ul>
 </nav>
 {% endif %}
