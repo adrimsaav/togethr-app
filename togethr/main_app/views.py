@@ -48,7 +48,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('home')
+            return redirect('timeline')
         else:
             error_message = 'Invalid sign up - try again'
     form = UserCreationForm()
@@ -102,6 +102,8 @@ class ProfileDelete(LoginRequiredMixin, DeleteView):
     model = User
     template_name ='menu/account/delete_profile.html'
     success_url = '/'
+
+
 
 
 # nav menu
