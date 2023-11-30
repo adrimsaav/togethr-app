@@ -14,4 +14,9 @@ urlpatterns = [
   path('menu/profile/<int:pk>/delete_profile/', views.ProfileDelete.as_view(), name='delete_profile'),
   # create post from timeline
   path('timeline/', views.timeline, name='timeline'),
+  # track likes for post
+  path('like_post/<int:pk>/', views.like_post, name='like_post'),
+  # track likes for comment
+  path('like_comment/<int:pk>/', views.like_comment, name='like_comment'),
+  
 ]

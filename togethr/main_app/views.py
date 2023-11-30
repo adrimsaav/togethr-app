@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from .models import Profile, Post, Comment, User
@@ -87,6 +87,32 @@ def profile(request, pk):
 
 def account_settings(request):
     return render(request, 'menu/account_settings.html')
+
+
+def like_post(request, pk):
+    if request.user.is_authenticated:
+        post = get_object_or_404(Post, id=pk)
+        if post.like.filter(id=request.user.id):
+            post.like.remove(request.user)
+        else:
+            post.like.add(request.user)
+        return redirect('timeline')
+    else:
+        messages.success(request, ("Please Log In Or Sign Up To View This Page"))
+        return redirect('home')
+
+
+def like_comment(request, pk):
+    if request.user.is_authenticated:
+        comment = get_object_or_404(Comment, id=pk)
+        if comment.like.filter(id=request.user.id):
+            comment.like.remove(request.user)
+        else:
+            comment.like.add(request.user)
+        return redirect('timeline')
+    else:
+        messages.success(request, ("Please Log In Or Sign Up To View This Page"))
+        return redirect('home')
 
 
 # account settings
