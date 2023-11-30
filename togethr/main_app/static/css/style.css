@@ -1,8 +1,8 @@
+/* Landing page styling */
 html, body {
     height: 100%;
     margin: 0;
 }
-
 
 .landing-page {
     background-image: url('/static/css/photos/base_background.jpg');
@@ -16,12 +16,13 @@ html, body {
     align-items: center;
 }
 
-
-
-.left-brand-logo img {
-    width: 415px;
-    height: 140px;
-    size: fixed;
+.togethr-text {
+    color: white; 
+    font-weight: bold; 
+    font-size: 85px; 
+    position: absolute; 
+    top: 25%; 
+    left: 13%; 
 }
 
 .slogan {
@@ -31,6 +32,27 @@ html, body {
     justify-content: center;
     height: 20px;
     margin: 5;
+}
+
+.left-slogan {
+    position: absolute;
+    top: 50%; 
+    left: 13%; 
+    color: rgb(65, 62, 62);
+}
+
+.right-slogan {
+    position: absolute;
+    top: 55%; 
+    right: 63%; 
+    color: white;
+    font-weight: bold;
+}
+
+.left-brand-logo img {
+    width: 415px;
+    height: 140px;
+    size: fixed;
 }
 
 body {
@@ -44,6 +66,8 @@ h1 {
     font-weight: bold;
 }
 
+
+/* Nav bar styling */
 .navbar-right {
     position: fixed;
     top: 50%;
