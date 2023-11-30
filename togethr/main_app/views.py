@@ -7,10 +7,13 @@ from .forms import PostForm, CommentForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
-from django.contrib.auth import logout
+from django.contrib.auth import logout, login
 
 def home(request):
-    return redirect('timeline')
+    if request.user.is_authenticated:
+        return redirect('timeline')
+    else:
+        return render(request, 'home.html')
 
 @login_required
 def timeline(request):
@@ -113,6 +116,10 @@ def like_comment(request, pk):
     else:
         messages.success(request, ("Please Log In Or Sign Up To View This Page"))
         return redirect('home')
+
+
+def logout(request):
+    return redirect('home')
 
 
 # account settings
