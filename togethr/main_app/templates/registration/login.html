@@ -2,20 +2,24 @@
 {% block content %}
 {% load static %}
 
+<div class="login-section">
 <div class="login-container">
-    <div class="login-image">
-        <img src="{% static 'css/photos/pic3.jpg' %}" class="login-pic">
+  <div class="login-image">
+      <img src="{% static 'css/photos/pic3.jpg' %}" class="login-pic">
+  </div>
+  <div class="login-form-container">
+      <a href="{% url 'home' %}" class="back-home"><< Back to Home</a>
+      <h1>Welcome Back</h1>
+      <form method="POST" action="{% url 'login' %}">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <input type="hidden" name="next" value="{{ next }}">
+          <div class="form-button-container"> 
+              <button type="submit" class="btn login-btn">Log In</button> 
+          </div>
+      </form>
     </div>
-    <div class="login-form-container">
-        <a href="{% url 'home' %}" class="back-home"><< Back to Home</a>
-        <h1>Welcome Back</h1>
-        <form method="POST" action="{% url 'login' %}">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="hidden" name="next" value="{{ next }}">
-            <button type="submit" class="btn">Log In</button>
-        </form>
-    </div>
+  </div>
 </div>
 
 {% endblock %}
