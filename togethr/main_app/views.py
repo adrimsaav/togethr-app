@@ -10,7 +10,7 @@ from django.contrib import messages
 from django.contrib.auth import logout
 
 def home(request):
-    return render(request, 'home.html')
+    return redirect('timeline')
 
 @login_required
 def timeline(request):
@@ -48,7 +48,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('home')
+            return redirect('timeline')
         else:
             error_message = 'Invalid sign up - try again'
     form = UserCreationForm()
@@ -102,6 +102,8 @@ class ProfileDelete(LoginRequiredMixin, DeleteView):
     model = User
     template_name ='menu/account/delete_profile.html'
     success_url = '/'
+
+
 
 
 # nav menu
