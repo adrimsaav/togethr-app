@@ -3,11 +3,12 @@
 <div class="timeline">
     <div class="post-form">
         {% if user.is_authenticated %}
-            <form method="post" action="{% url 'timeline' %}">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit">Post</button>
-            </form>
+        <form method="post" action="{% url 'timeline' %}">
+            {% csrf_token %}
+            <input type="hidden" name="post_form" value="1">
+            {{ form.as_p }}
+            <button type="submit">Post</button>
+        </form>
         {% endif %}
     </div>
 
@@ -31,10 +32,10 @@
                 <form method="post" action="{% url 'timeline' %}">
                     {% csrf_token %}
                     <input type="hidden" name="comment_form" value="1">
-                    <input type="hidden" name="post" value="{{ post.id }}">
+                    <input type="hidden" name="post_id" value="{{ post.id }}">
                     {{ comment_form.as_p }}
                     <button type="submit">Add Comment</button>
-                </form>                
+                </form>             
             </div>
         {% endfor %}
     </div>
