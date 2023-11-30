@@ -1,42 +1,39 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="timeline">
-    <div class="post-form">
-        {% if user.is_authenticated %}
-        <form method="post" action="{% url 'timeline' %}">
+    {% if user.is_authenticated %}
+    <div class="create-post-container">
+        <form method="post" action="{% url 'timeline' %}" class="post-form">
             {% csrf_token %}
             <input type="hidden" name="post_form" value="1">
             {{ form.as_p }}
-            <button type="submit">Post</button>
+            <button type="submit" class="post-button"></button> 
         </form>
-        {% endif %}
     </div>
-
+    {% endif %}
     <div class="posts">
         {% for post in posts %}
-            <div class="post">
-                <strong>{{ post.user.username }}</strong>
-                <p>{{ post.body }}</p>
-                <small>Posted on {{ post.created_at }}</small>
-                <!-- for displaying comments on post -->
-                <ul>
-                    {% for comment in post.comment_set.all %}
-                        <li>
-                            <strong>{{ comment.user.username }}</strong>
-                            <span>{{ comment.body }}</span>
-                            <small>Commented on {{ comment.created_at }}</small>
-                        </li>
-                    {% endfor %}
-                </ul>
-                <!-- comment form for current post -->
-                <form method="post" action="{% url 'timeline' %}">
-                    {% csrf_token %}
-                    <input type="hidden" name="comment_form" value="1">
-                    <input type="hidden" name="post_id" value="{{ post.id }}">
-                    {{ comment_form.as_p }}
-                    <button type="submit">Add Comment</button>
-                </form>             
-            </div>
+        <div class="post">
+            <strong>{{ post.user.username }}</strong>
+            <p>{{ post.body }}</p>
+            <small>{{ post.created_at }}</small>
+            <ul>
+                {% for comment in post.comment_set.all %}
+                <li>
+                    <strong>{{ comment.user.username }}</strong>
+                    <span>{{ comment.body }}</span>
+                    <small>Commented on {{ comment.created_at }}</small>
+                </li>
+                {% endfor %}
+            </ul>
+            <form method="post" action="{% url 'timeline' %}">
+                {% csrf_token %}
+                <input type="hidden" name="comment_form" value="1">
+                <input type="hidden" name="post_id" value="{{ post.id }}">
+                {{ comment_form.as_p }}
+                <button type="submit">Add Comment</button>
+            </form>
+        </div>
         {% endfor %}
     </div>
 </div>
