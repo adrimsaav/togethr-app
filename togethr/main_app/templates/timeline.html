@@ -18,7 +18,12 @@
                 <strong>{{ post.user.username }}</strong>
                 <p>{{ post.body }}</p>
                 <small>Posted on {{ post.created_at }}
-                   ~  {{ post.likes }} Likes  ~ <a href="{% url 'like_post' post.id %}">Like</a>
+                    ~  {{ post.likes }} Likes  ~ 
+                    {% if user in post.like.all %}
+                        <a href="{% url 'like_post' post.id %}">Unlike</a>
+                    {% else %}
+                        <a href="{% url 'like_post' post.id %}">Like</a>
+                    {% endif %}
                 </small>
                 <!-- for displaying comments on post -->
                 <ul>
