@@ -39,14 +39,14 @@ def profile(request, pk):
         profile = Profile.objects.get(user_id=pk)
 
     # Code follow/unfollow button
-    if request.method == "POST":
-        current_user_profile = request.user.profile
-        action = request.POST['follow']
-        if action == "unfollow":
-            current_user_profile.follows.remove(profile)
-        elif action == "follow":
-            current_user_profile.follows.add(profile)
-            current_user_profile.save()
+        if request.method == "POST":
+            current_user_profile = request.user.profile
+            action = request.POST['follow']
+            if action == "unfollow":
+                current_user_profile.follows.remove(profile)
+            elif action == "follow":
+                current_user_profile.follows.add(profile)
+                current_user_profile.save()
 
         return render(request, 'menu/profile.html', {"profile":profile})
     else:
