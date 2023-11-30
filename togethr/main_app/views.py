@@ -10,7 +10,7 @@ from django.contrib import messages
 from django.contrib.auth import logout
 
 def home(request):
-    return render(request, 'home.html')
+    return redirect('timeline')
 
 @login_required
 def timeline(request):
