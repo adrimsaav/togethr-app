@@ -9,7 +9,7 @@ class PostForm(forms.ModelForm):
             'body': ''
         }
         widgets = {
-            'body': forms.Textarea(attrs={'placeholder': 'Create A Post...'})
+            'body': forms.Textarea(attrs={'placeholder': 'Create A Post...', 'class': 'rounded'})
         }
 
 class CommentForm(forms.ModelForm):
@@ -20,5 +20,5 @@ class CommentForm(forms.ModelForm):
             'body': ''
         }
         widgets = {
-            'body': forms.Textarea(attrs={'rows': 1, 'placeholder': 'Comment...'}),
+            'body': forms.Textarea(attrs={'rows': 1, 'placeholder': 'Comment...', 'class': 'rounded'}),
         }
