@@ -11,6 +11,12 @@ class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     body = models.TextField(max_length=250)
     created_at = models.DateTimeField(auto_now_add=True)
+    # Add like object ---> should be ManyToMany
+    like = models.ManyToManyField(User, related_name='post_like', blank=True)
+
+    # Keep count of likes
+    def likes(self):
+        return self.like.count()
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, db_index=True)
