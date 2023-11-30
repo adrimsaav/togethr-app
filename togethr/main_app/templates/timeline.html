@@ -1,18 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="timeline">
-    <div class="post-form">
-        {% if user.is_authenticated %}
-        <form method="post" action="{% url 'timeline' %}">
+    {% if user.is_authenticated %}
+    <div class="create-post-container">
+        <form method="post" action="{% url 'timeline' %}" class="post-form">
             {% csrf_token %}
             <input type="hidden" name="post_form" value="1">
             {{ form.as_p }}
-            <button type="submit">Post</button>
+            <button type="submit" class="post-button"></button> 
         </form>
-        {% endif %}
     </div>
-
-    <div class="posts">
+    {% endif %}
+    
+  <div class="posts">
         {% for post in posts %}
             <div class="post">
                 <strong>{{ post.user.username }}</strong>
