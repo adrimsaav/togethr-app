@@ -13,6 +13,13 @@ def home(request):
 
 @login_required
 def timeline(request):
+    
+    form = PostForm()
+    comment_form = CommentForm()
+    posts = Post.objects.all().order_by('-created_at')
+    comments = Comment.objects.all().order_by('-created_at')
+
+
     if request.method == 'POST':
         if 'post_form' in request.POST:
             form = PostForm(request.POST)
@@ -26,15 +33,10 @@ def timeline(request):
             if comment_form.is_valid():
                 comment = comment_form.save(commit=False)
                 comment.user = request.user
-                comment.post_id = request.POST.get('post')
+                comment.post_id = request.POST.get('post_id')
                 comment.save()
                 return redirect('timeline')
-    else:
-        form = PostForm()
-        comment_form = CommentForm()
     
-    posts = Post.objects.all().order_by('-created_at')
-    comments = Comment.objects.all().order_by('-created_at')
 
     return render(request, 'timeline.html', {'form': form, 'comment_form': comment_form, 'posts': posts, 'comments': comments})
 
