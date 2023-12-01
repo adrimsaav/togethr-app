@@ -2,12 +2,16 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from .models import Profile, Post, Comment, User
-from django.views.generic import DeleteView
+from django.views.generic import DeleteView, UpdateView
 from .forms import PostForm, CommentForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth import update_session_auth_hash
 from django.contrib import messages
 from django.contrib.auth import logout, login
+import uuid
+import boto3
+import os 
 
 def home(request):
     if request.user.is_authenticated:
@@ -120,6 +124,23 @@ def like_comment(request, pk):
 
 def logout(request):
     return redirect('home')
+
+@login_required
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('password_change_done')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'menu/account/change_password.html', {'form': form})
+
+
 
 
 def delete_post(request, pk):
