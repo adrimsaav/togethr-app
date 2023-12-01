@@ -140,9 +140,6 @@ def change_password(request):
         form = PasswordChangeForm(request.user)
     return render(request, 'menu/account/change_password.html', {'form': form})
 
-@login_required
-def change_password(request):
-    return render(request, 'menu/account/change_password.html')
 
 
 

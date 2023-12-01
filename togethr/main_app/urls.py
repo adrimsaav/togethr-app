@@ -13,7 +13,6 @@ urlpatterns = [
   path('profile_list/', views.profile_list, name='profile_list'),
   path('account_settings/', views.account_settings, name='account_settings'),
   # account settings page
-  path('account/change_password', views.change_password, name='change_password'),
   path('account/edit_profile', views.edit_profile, name='edit_profile'),
   path('profile/<int:pk>/delete_profile/', views.ProfileDelete.as_view(), name='delete_profile'),
   # create post from timeline
