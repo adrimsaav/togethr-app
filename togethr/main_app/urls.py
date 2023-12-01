@@ -22,5 +22,8 @@ urlpatterns = [
   # asw adding pictures
   path('post/<int:pk>/add_photo/', views.add_photo, name='add_photo'),
   path('profile/<int:pk>/add_photo/', views.add_photo, name='add_photo'),
-
+  # delete post
+  path('delete_post/<int:pk>/', views.delete_post, name='delete_post'),
+  # delete comment
+  path('delete_comment/<int:pk>/', views.delete_comment, name='delete_comment'),
 ]

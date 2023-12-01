@@ -12,27 +12,27 @@ import uuid
 import boto3
 import os 
 
-@login_required
-def add_photo(request, pk):
-    try:
-        post = Post.objects.get(id=pk)
-    except Post.DoesNotExist:
-        raise Http404("Post does not exist")
-    photo_file = request.FILES.get('photo-file', None)
-    if photo_file:
-        s3 = boto3.client('s3')
-        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
-        try:
-            bucket = os.environ['S3_BUCKET']
-            s3.upload_fileobj(photo_file, bucket, key)
-            url = f"{os.environ['S3_BASE_URL']}/{bucket}/{key}"
-            photo = Photo.objects.create(url=url, id=pk)
-            post.photo = photo 
-            post.save()
-        except Exception as e:
-            print('An error occurred uploading file to S3')
-            print(e)
-    return redirect('post_detail', id=pk)
+# @login_required
+# def add_photo(request, pk):
+#     try:
+#         post = Post.objects.get(id=pk)
+#     except Post.DoesNotExist:
+#         raise Http404("Post does not exist")
+#     photo_file = request.FILES.get('photo-file', None)
+#     if photo_file:
+#         s3 = boto3.client('s3')
+#         key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+#         try:
+#             bucket = os.environ['S3_BUCKET']
+#             s3.upload_fileobj(photo_file, bucket, key)
+#             url = f"{os.environ['S3_BASE_URL']}/{bucket}/{key}"
+#             photo = Photo.objects.create(url=url, id=pk)
+#             post.photo = photo 
+#             post.save()
+#         except Exception as e:
+#             print('An error occurred uploading file to S3')
+#             print(e)
+#     return redirect('post_detail', id=pk)
 
 def home(request):
     if request.user.is_authenticated:
@@ -147,7 +147,6 @@ def logout(request):
     return redirect('home')
 
 
-<<<<<<< HEAD
 def add_photo(request, pk):
     photo_file = request.FILES.get('photo-file', None)
     if photo_file:
@@ -168,7 +167,6 @@ def add_photo(request, pk):
     return redirect('detail', id=pk)
 
 
-=======
 def delete_post(request, pk):
     if request.user.is_authenticated:
         post = get_object_or_404(Post, id=pk)
@@ -199,7 +197,6 @@ def delete_comment(request, pk):
         messages.success(request, ("Please Log In Or Sign Up To View This Page"))
         return redirect('home')
 
->>>>>>> main
 # account settings
 @login_required
 def edit_posts(request):
