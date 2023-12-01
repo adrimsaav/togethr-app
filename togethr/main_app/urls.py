@@ -21,5 +21,6 @@ urlpatterns = [
   path('like_comment/<int:pk>/', views.like_comment, name='like_comment'),
   # asw adding pictures
   path('post/<int:pk>/add_photo/', views.add_photo, name='add_photo'),
+  path('profile/<int:pk>/add_photo/', views.add_photo, name='add_photo'),
 
 ]

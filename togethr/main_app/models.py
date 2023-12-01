@@ -19,12 +19,6 @@ class Post(models.Model):
     def likes(self):
         return self.like.count()
 
-class Photo(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    url = models.CharField(max_length=200)
-
-    def __str__(self):
-        return f"Posted by {self.user.username} @{self.url}"
 
 
 
@@ -68,3 +62,10 @@ def create_profile(sender, instance, created, **kwargs):
         user_profile.save()
 
 post_save.connect(create_profile, sender=User)
+
+class Photo(models.Model):
+    url = models.CharField(max_length=200)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Photo for user_id: {self.user_id} @{self.url}"
