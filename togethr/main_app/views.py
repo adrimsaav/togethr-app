@@ -12,7 +12,12 @@ import uuid
 import boto3
 import os 
 
-def add_photo(request, cat_id):
+@login_required
+def add_photo(request, pk):
+    try:
+        post = Post.objects.get(id=pk)
+    except Post.DoesNotExist:
+        raise Http404("Post does not exist")
     photo_file = request.FILES.get('photo-file', None)
     if photo_file:
         s3 = boto3.client('s3')
@@ -20,14 +25,14 @@ def add_photo(request, cat_id):
         try:
             bucket = os.environ['S3_BUCKET']
             s3.upload_fileobj(photo_file, bucket, key)
-            url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
-            Photo.objects.create(url=url, Profile=Profile)
+            url = f"{os.environ['S3_BASE_URL']}/{bucket}/{key}"
+            photo = Photo.objects.create(url=url, id=pk)
+            post.photo = photo 
+            post.save()
         except Exception as e:
             print('An error occurred uploading file to S3')
             print(e)
-    return redirect('detail', Profile=Profile)
-
-
+    return redirect('post_detail', id=pk)
 
 def home(request):
     if request.user.is_authenticated:
