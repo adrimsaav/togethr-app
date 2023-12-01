@@ -69,6 +69,10 @@ Welcome to **Togethr**, an innovative social networking platform that combines t
 
 **Adriana**
 
+![Alt text](<Screenshot 2023-12-01 at 9.17.26 AM.png>)
+
+Was difficult in the sense of handling the PostForm and CommentForm submission, it just contained a lot of steps and took me hours to get working.
+
 ## Key Takeaways 
 - Communication is key in order to reach the finish line
 - Everyone has strengths in different areas, so you should take advantage of other people's strengths and ask for help
