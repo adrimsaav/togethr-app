@@ -60,12 +60,12 @@ Welcome to **Togethr**, an innovative social networking platform that combines t
 
 ## Challenging Code
 
-**Kevin**
+**Kevin:**
 - ![image](https://github.com/adrimsaav/togethr-app/assets/87548545/d1ea7a44-fb60-4ddd-ad7e-55e474da1c68)
 
 - The most challenging code for me was getting AWS set up and implemented into the project. After watching the AWS Cat Collector version, I realized that the coding format for our project was set up differently compared to the video. In the video, users were able to insert an image after creating an object whereas our plan was to create the object and post the image simultaneously. This led to a bunch of troubleshooting, like from figuring out the correct paths, to merging the post view function with AWS function, to the images not loading upon clicking on post. Basically it was alot of referencing the Cat Collector video to thinking outside of the box and applying the concept to our project. 
 
-**Nisal**
+**Nisal:**
 The biggest challenge I had was with a delete profile function because not only was it not working correctly, but in the process of troubleshooting my migrations became unsynced. I spent an entire day just trying to fix the migrations so this one issue ended up taking away a lot of work time. In the end I wasn't even able to solve the issue on my own and needed help to figure it out. The solution was to drop my database and recreate it. 
 
 ![Delete_function_bad](https://github.com/adrimsaav/togethr-app/assets/145291849/bca516ec-94d1-441c-b415-44e519d6f4aa)
@@ -81,7 +81,8 @@ The third picture is an interesting one because it shows that the profile and un
 ![Delete_function_fixed](https://github.com/adrimsaav/togethr-app/assets/145291849/64893525-4f3d-4429-9483-54184c898a3a)
 
 This last picture is the fixed version of the delete function that Keith helped us write. We mainly used function based views because that's what we were more comfortable with, however after seeing how much cleaner and reusable class based views are, I feel the need to practice class based views.
-**Adriana**
+
+**Adriana:**
 
 ![Alt text](<Screenshot 2023-12-01 at 9.17.26 AM.png>)
 
