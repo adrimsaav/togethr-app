@@ -57,6 +57,13 @@ Welcome to **Togethr**, an innovative social networking platform that combines t
 
 ## Challenging Code
 
+-- **Kevin**
+The most challenging code for me was getting AWS set up and implemented into the project. Mainly because the only relative example  
+
+-- **Nisal**
+
+-- **Adriana**
+
 ## Key Takeaways 
 
 
@@ -66,4 +73,4 @@ Join Togethr today – where connections made online turn into real-life adventu
 
 ---
 
-Contributors: Nisal, Adrianna, Kevin
+Contributors: Nisal, Adriana, Kevin
