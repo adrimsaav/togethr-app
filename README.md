@@ -45,7 +45,10 @@ Welcome to **Togethr**, an innovative social networking platform that combines t
 
 ## App Deployment/Trello Board
 1. https://trello.com/b/FKaIeiSF/project-3-twitter-hinge-app-togethr
-2. Heroku 
+2. Heroku
+3. ERD
+- ![image](https://github.com/adrimsaav/togethr-app/assets/87548545/40637627-a77a-40de-9730-ad6c8e1fceef)
+ 
 
 ## Next Steps/Future Implementations 
 1. Users being able to DM each other
