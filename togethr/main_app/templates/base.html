@@ -24,7 +24,13 @@
         <a href="{% url 'timeline' %}" class="left-brand-logo">
           <img src="{% static 'css/photos/togethr-logo.png' %}" alt="Togethr Logo" style="width: 215px; height: 70px;">
         </a>
+
         <ul class="navbar-right nav flex-column">
+          <a href="{% url 'profile' request.user.id %}">
+            <img src="{% static 'css/photos/Default_Pic.jpg' %}" alt="Profile Pic" 
+            class="home-image" style="max-width: 120px; max-height: 120px; border-radius: 50%;
+            display: block; margin: 0 auto; text-align: center; margin-bottom: 20px;">
+          </a>
           <li class="nav-item"><a class="nav-link" href="{% url 'timeline' %}">Timeline</a></li>
           <li class="nav-item"><a class="nav-link" href="{% url 'profile' request.user.id %}">Profile</a></li>
           <li class="nav-item"><a class="nav-link" href="{% url 'account_settings' %}">Account Settings</a></li>
@@ -63,7 +69,6 @@
     {% endblock %}
   </main>
   <footer class="page-footer">
-    <!-- Footer content here -->
   </footer>
 </body>
 </html>
