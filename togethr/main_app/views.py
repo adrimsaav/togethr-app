@@ -13,49 +13,31 @@ import boto3
 import os 
 
 @login_required
-def add_photo(request, pk):
-    try:
-        post = Post.objects.get(id=pk)
-    except Post.DoesNotExist:
-        raise Http404("Post does not exist")
-    photo_file = request.FILES.get('photo-file', None)
-    if photo_file:
-        s3 = boto3.client('s3')
-        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
-        try:
-            bucket = os.environ['S3_BUCKET']
-            s3.upload_fileobj(photo_file, bucket, key)
-            url = f"{os.environ['S3_BASE_URL']}/{bucket}/{key}"
-            photo = Photo.objects.create(url=url, id=pk)
-            post.photo = photo 
-            post.save()
-        except Exception as e:
-            print('An error occurred uploading file to S3')
-            print(e)
-    return redirect('post_detail', id=pk)
-
-def home(request):
-    if request.user.is_authenticated:
-        return redirect('timeline')
-    else:
-        return render(request, 'home.html')
-
-@login_required
 def timeline(request):
-    
     form = PostForm()
     comment_form = CommentForm()
     posts = Post.objects.all().order_by('-created_at')
     comments = Comment.objects.all().order_by('-created_at')
 
-
     if request.method == 'POST':
         if 'post_form' in request.POST:
             form = PostForm(request.POST)
+            photo_file = request.FILES.get('photo-file', None)
             if form.is_valid():
                 post = form.save(commit=False)
                 post.user = request.user
                 post.save()
+                if photo_file:
+                    s3 = boto3.client('s3')
+                    key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+                    try:
+                        bucket = os.environ['S3_BUCKET']
+                        s3.upload_fileobj(photo_file, bucket, key)
+                        url = f"{os.environ['S3_BASE_URL']}/{bucket}/{key}"
+                        Photo.objects.create(url=url, post=post)
+                    except Exception as e:
+                        print('An error occurred uploading file to S3')
+                        print(e)
                 return redirect('timeline')
         elif 'comment_form' in request.POST:
             comment_form = CommentForm(request.POST)
@@ -65,9 +47,20 @@ def timeline(request):
                 comment.post_id = request.POST.get('post_id')
                 comment.save()
                 return redirect('timeline')
-    
+    return render(request, 'timeline.html', {
+        'form': form,
+        'comment_form': comment_form,
+        'posts': posts,
+        'comments': comments
+    })
 
-    return render(request, 'timeline.html', {'form': form, 'comment_form': comment_form, 'posts': posts, 'comments': comments})
+
+def home(request):
+    if request.user.is_authenticated:
+        return redirect('timeline')
+    else:
+        return render(request, 'home.html')
+
 
 def signup(request):
     error_message = ''

@@ -13,18 +13,18 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     # Add like object ---> should be ManyToMany
     like = models.ManyToManyField(User, related_name='post_like', blank=True)
-    photo = models.OneToOneField('Photo', on_delete=models.SET_NULL, null=True, blank=True, related_name='post')
+    photo = models.OneToOneField('Photo', on_delete=models.SET_NULL, null=True, blank=True, related_name='post_photo')
 
     # Keep count of likes (posts)
     def likes(self):
         return self.like.count()
 
 class Photo(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    url = models.CharField(max_length=200)
+    url = models.TextField(max_length=200)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='photos')
 
     def __str__(self):
-        return f"Posted by {self.user.username} @{self.url}"
+        return f"Photo for post {self.post.id}"
 
 
 
