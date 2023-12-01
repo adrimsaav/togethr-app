@@ -8,9 +8,9 @@
             {% csrf_token %}
             <input type="hidden" name="post_form" value="1">
             {{ form.as_p }}
-            <input type="file" name="photo-file" accept="image/*">
+            <!-- <input type="file" name="photo-file" accept="image/*"> -->
             <button type="submit" class="post-button">Post</button> 
-            {% for photo in user.photo_set.all %}
+            {% for photo in post.photo_set.all %}
                 <img class="responsive-img card-panel" src="{{photo.url}}">
             {% empty %}
                 <div class="card-panel teal-text center-align">No Photos Uploaded</div>
