@@ -1,5 +1,6 @@
 from django import forms
 from .models import Post, Comment
+from django.contrib.auth.forms import PasswordChangeForm
 
 class PostForm(forms.ModelForm):
     class Meta:
@@ -24,3 +25,8 @@ class CommentForm(forms.ModelForm):
             'body': forms.Textarea(attrs={'rows': 1, 'placeholder': 'Comment...', 'class': 'rounded'}),
         }
         exclude = ["user", "like",]
+
+class CustomPasswordChangeForm(PasswordChangeForm):
+    def __init__(self, *args, **kwargs):
+        super(CustomPasswordChangeForm, self).__init__(*args, **kwargs)
+

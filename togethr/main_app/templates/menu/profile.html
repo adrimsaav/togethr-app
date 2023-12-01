@@ -1,10 +1,55 @@
+profile.html
+
 {% extends 'base.html' %}
 {% block content %}
 
+<style>
+    h3 {
+        margin-top: 20px;
+        width: 180px;
+        font-weight: bold;
+        text-align: center;
+        border-radius: 10px;
+        background-color: #ffffff; 
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+        margin-left: auto;
+        margin-right: auto;   
+    }
+
+    .profile-container {
+        background-color: #f8f8f8; 
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        border-radius: 30px;
+        margin-bottom: 5px;
+        padding: 7px;
+        width: 50em;
+        height: 40em;
+        border: 4px;
+        margin: 0 auto;
+        margin-left: 50px auto;
+        }
+
+    h5 {
+        font-size: 15px;
+    }
+
+    .col-2{
+        font-size: 15px;
+        flex-direction: row;
+        width: 250px;
+        margin-left: 40px;
+    }
+
+    button {
+        margin-left: 40px;
+    }
+
+
+</style>
 
 {% if profile %}
- 
-    <h3>{{ profile.user.username }}'s Profile</h3>
+  <div class="profile-container">
+    <h3>@{{ profile.user.username }}</h3>
     <br/><br/>
    
     <div class="col-2">
@@ -40,7 +85,7 @@
         
         {% endif %}
     </form>
-    
+  </div>
 {% endif %}
 
 {% endblock %}
