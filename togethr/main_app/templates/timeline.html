@@ -8,8 +8,19 @@
             {% csrf_token %}
             <input type="hidden" name="post_form" value="1">
             {{ form.as_p }}
-            <input type="file" name="photo-file" accept="image/*">
+            <!-- <input type="file" name="photo-file" accept="image/*"> -->
             <button type="submit" class="post-button">Post</button> 
+            {% for photo in post.photo_set.all %}
+                <img class="responsive-img card-panel" src="{{photo.url}}">
+            {% empty %}
+                <div class="card-panel teal-text center-align">No Photos Uploaded</div>
+            {% endfor %}
+            <form action="{% url 'add_photo' user.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
+                {% csrf_token %}
+                <input type="file" name="photo-file">
+                <br><br>
+                <button type="submit" class="btn">Upload Photo</button>
+            </form>
         </form>
         <br><br>
     </div>
@@ -20,7 +31,10 @@
                 <img src="{{ post.photo.url }}" alt="Photo for post {{ post.id }}">
             {% endif %}
             <div class="post">
-                <strong>{{ post.user.username }}</strong>
+                <strong>{{ post.user.username }}</strong> 
+                {% if request.user.username == post.user.username %}
+                <small><a href="{% url 'delete_post' post.id %}">delete</a></small>
+                {% endif %}
                 <p>{{ post.body }}</p>
                 <small>Posted on {{ post.created_at }}
                     ~  {{ post.likes }} Likes  ~ 
@@ -39,9 +53,15 @@
                             <small>Commented on {{ comment.created_at }}
                             ~ {{ comment.likes }} Likes  ~ 
                             {% if user in comment.like.all %}
-                                <a href="{% url 'like_comment' comment.id %}">Unlike</a>
+                                <a href="{% url 'like_comment' comment.id %}">Unlike</a> 
+                                {% if request.user.username == comment.user.username %}
+                                <a href="{% url 'delete_comment' comment.id %}">delete</a>
+                                {% endif %}
                             {% else %}
-                                <a href="{% url 'like_comment' comment.id %}">Like</a>
+                                <a href="{% url 'like_comment' comment.id %}">Like</a> 
+                                {% if request.user.username == comment.user.username %}
+                                <a href="{% url 'delete_comment' comment.id %}">delete</a>
+                                {% endif %}
                             {% endif %}
                             </small> 
                         <br><br>
@@ -53,7 +73,7 @@
                     <input type="hidden" name="comment_form" value="1">
                     <input type="hidden" name="post_id" value="{{ post.id }}">
                     {{ comment_form.as_p }}
-                    <button type="submit">Add Comment</button>
+                    <button type="submit" class="post-button">Add Comment</button>
                 </br></br>
                 </form>             
             </div>

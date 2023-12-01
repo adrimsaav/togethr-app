@@ -12,6 +12,34 @@ import uuid
 import boto3
 import os 
 
+# @login_required
+# def add_photo(request, pk):
+#     try:
+#         post = Post.objects.get(id=pk)
+#     except Post.DoesNotExist:
+#         raise Http404("Post does not exist")
+#     photo_file = request.FILES.get('photo-file', None)
+#     if photo_file:
+#         s3 = boto3.client('s3')
+#         key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+#         try:
+#             bucket = os.environ['S3_BUCKET']
+#             s3.upload_fileobj(photo_file, bucket, key)
+#             url = f"{os.environ['S3_BASE_URL']}/{bucket}/{key}"
+#             photo = Photo.objects.create(url=url, id=pk)
+#             post.photo = photo 
+#             post.save()
+#         except Exception as e:
+#             print('An error occurred uploading file to S3')
+#             print(e)
+#     return redirect('post_detail', id=pk)
+
+def home(request):
+    if request.user.is_authenticated:
+        return redirect('timeline')
+    else:
+        return render(request, 'home.html')
+
 @login_required
 def timeline(request):
     form = PostForm()
@@ -139,6 +167,56 @@ def like_comment(request, pk):
 def logout(request):
     return redirect('home')
 
+
+def add_photo(request, pk):
+    photo_file = request.FILES.get('photo-file', None)
+    if photo_file:
+        s3 = boto3.client('s3')
+        # need a unique "key" for S3 / needs image file extension too
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+        # just in case something goes wrong
+        try:
+            bucket = os.environ['S3_BUCKET']
+            s3.upload_fileobj(photo_file, bucket, key)
+            # build the full url string
+            url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
+            # we can assign to cat_id or cat (if you have a cat object)
+            Photo.objects.create(url=url, id=pk)
+        except Exception as e:
+            print('An error occurred uploading file to S3')
+            print(e)
+    return redirect('detail', id=pk)
+
+
+def delete_post(request, pk):
+    if request.user.is_authenticated:
+        post = get_object_or_404(Post, id=pk)
+        if request.user.username == post.user.username:
+            post.delete()
+            messages.success(request, ("This Post Has Been Deleted"))
+            return redirect(request.META.get('HTTP_REFERER'))
+        else:
+            messages.success(request, ("This Post Does Not Belong To You"))
+            return redirect('timeline')
+    else:
+        messages.success(request, ("Please Log In Or Sign Up To View This Page"))
+        return redirect('home')
+
+
+
+def delete_comment(request, pk):
+    if request.user.is_authenticated:
+        comment = get_object_or_404(Comment, id=pk)
+        if request.user.username == comment.user.username:
+            comment.delete()
+            messages.success(request, ("This Comment Has Been Deleted"))
+            return redirect(request.META.get('HTTP_REFERER'))
+        else:
+            messages.success(request, ("This Comment Does Not Belong To You"))
+            return redirect('timeline')
+    else:
+        messages.success(request, ("Please Log In Or Sign Up To View This Page"))
+        return redirect('home')
 
 # account settings
 @login_required
