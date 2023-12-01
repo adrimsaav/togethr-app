@@ -19,5 +19,6 @@ urlpatterns = [
   path('like_post/<int:pk>/', views.like_post, name='like_post'),
   # track likes for comment
   path('like_comment/<int:pk>/', views.like_comment, name='like_comment'),
-  
+  # asw adding pictures
+  path('timeline/', views.add_photo, name='add_photo'),
 ]
