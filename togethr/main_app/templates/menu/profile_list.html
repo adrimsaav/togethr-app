@@ -2,30 +2,74 @@
 {% load static %}
 {% block content %}
 
-<h3> Profile List </h3>
+<style>
 
-<br/>
+h3 {
+    margin-top: 20px;
+    width: 180px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #ffffff; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    margin-left: auto;
+    margin-right: auto;   
+}
 
-{% if profiles %}
-    {% for profile in profiles %}
+.profile-list-container {
+    background-color: #f8f8f8; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+    margin-bottom: 20px;
+    padding: 15px;
+    width: 60em;
+    height: 60em;
+    border: 4px;
+    margin: 0 auto;
+    font-size: 15px;
+}
 
-    <div class="card mb-3" style="max-width: 540px;">
-        <div class="row g-0">
-          <div class="col-md-4">
-            <img src="{% static 'css/photos/Default_Pic.jpg'%}" class="img-fluid rounded-start" alt="Profile Pic">
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title">{{ profile.user.username }}</h5>
-              <p class="card-text"><a href="{% url 'profile' profile.user.id %}">@{{ profile.user.username|lower }}</a></p>
-              <p class="card-text"><small class="text-body-secondary">{{ profile.date_modified }}</small></p>
+.card {
+    max-width: 100%;
+}
+
+.card img {
+    max-width: 100%;
+    border: 2px solid #ddd;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-left: 2px;
+}
+</style>
+
+<div class="profile-list-container">
+  <h3> Profile List </h3>
+
+  <br/>
+
+  {% if profiles %}
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      {% for profile in profiles %}
+        <div class="col-md-6">
+          <div class="card mb-3" style="width: 100%;">
+            <div class="row">
+              <div class="col-md-3">
+                <img src="{% static 'css/photos/Default_Pic.jpg' %}" class="img-fluid rounded-start" alt="Profile Pic">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">{{ profile.user.username }}</h5>
+                  <p class="card-text"><a href="{% url 'profile' profile.user.id %}">@{{ profile.user.username|lower }}</a></p>
+                  <p class="card-text"><small class="text-body-secondary">{{ profile.date_modified }}</small></p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-        <br/><br/>
-
-    {% endfor %}
-{% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>
 
 {% endblock %}

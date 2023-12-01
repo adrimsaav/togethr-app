@@ -1,13 +1,37 @@
 {% extends 'base.html' %}
 {% block content %}
 <style>
+  h3 {
+    margin-top: 20px;
+    width: 250px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #ffffff; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    margin-left: auto;
+    margin-right: auto;   
+  }
+
+  .navbar-settings {
+    background-color: #f8f8f8; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+    margin-bottom: 5px;
+    padding: 7px;
+    width: 50em;
+    height: 40em;
+    border: 4px;
+    margin: 0 auto;
+    margin-left: 50px auto;
+  }
     .nav-item-delete {
     color: rgb(255, 79, 79);
     font-weight: bold;
     position: absolute;
-    bottom: 0;
+    bottom: 30px;
     padding: 20px;
-    margin-bottom: 40px; /* Optional: Add padding for better aesthetics */
+    margin-bottom: 40px;
     box-sizing: border-box;
     }
 
@@ -15,14 +39,19 @@
     color: rgb(255, 79, 79);
     text-decoration: none; 
     }
-</style>
 
-<!-- <h3 style="margin-bottom: 30px;"> Account Settings </h3> -->
+    .nav-items-settings {
+    text-align: center;
+    border: 1px solid rgb(117, 117, 117);
+    background-color: white;
+    }
+</style>
 
 {% if user.is_authenticated %}
 <nav class="navbar-settings">
+  <h3>Account Settings</h3>
   <ul class="nav flex-column">
-    <li class="nav-item-settings"><a class="nav-link" href="{% url 'edit_posts' %}">Edit/Delete Posts</a></li>
+    <li class="nav-item-settings"><a class="nav-link" href="{% url 'change_password' %}">Change Password</a></li>
     <li class="nav-item-settings"><a class="nav-link" href="{% url 'edit_profile' %}">Edit Bio/Profile Picture/Username</a></li>
     <li class="nav-item-delete"><a class="nav-link-delete" href="{% url 'delete_profile' user.pk %}">Delete Profile</a></li>
   </ul>
