@@ -122,6 +122,36 @@ def logout(request):
     return redirect('home')
 
 
+def delete_post(request, pk):
+    if request.user.is_authenticated:
+        post = get_object_or_404(Post, id=pk)
+        if request.user.username == post.user.username:
+            post.delete()
+            messages.success(request, ("This Post Has Been Deleted"))
+            return redirect(request.META.get('HTTP_REFERER'))
+        else:
+            messages.success(request, ("This Post Does Not Belong To You"))
+            return redirect('timeline')
+    else:
+        messages.success(request, ("Please Log In Or Sign Up To View This Page"))
+        return redirect('home')
+
+
+
+def delete_comment(request, pk):
+    if request.user.is_authenticated:
+        comment = get_object_or_404(Comment, id=pk)
+        if request.user.username == comment.user.username:
+            comment.delete()
+            messages.success(request, ("This Comment Has Been Deleted"))
+            return redirect(request.META.get('HTTP_REFERER'))
+        else:
+            messages.success(request, ("This Comment Does Not Belong To You"))
+            return redirect('timeline')
+    else:
+        messages.success(request, ("Please Log In Or Sign Up To View This Page"))
+        return redirect('home')
+
 # account settings
 @login_required
 def edit_posts(request):
