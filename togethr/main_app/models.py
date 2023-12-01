@@ -27,7 +27,6 @@ class Photo(models.Model):
         return f"Posted by {self.user.username} @{self.url}"
 
 
-
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, db_index=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
