@@ -179,8 +179,8 @@ def delete_comment(request, pk):
 
 # account settings
 @login_required
-def edit_posts(request):
-    return render(request, 'menu/account/edit_posts.html')
+def change_password(request):
+    return render(request, 'menu/account/change_password.html')
 
 @login_required
 def edit_profile(request):
