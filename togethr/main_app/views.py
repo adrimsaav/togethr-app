@@ -122,6 +122,23 @@ def logout(request):
     return redirect('home')
 
 
+def delete_post(request, pk):
+    if request.user.is_authenticated:
+        post = get_object_or_404(Post, id=pk)
+    else:
+        messages.success(request, ("That Post Does Not Belong To You"))
+        return redirect(request.META.get('HTTP_REFERER'))
+
+
+
+def delete_comment(request, pk):
+    if request.user.is_authenticated:
+        comment = get_object_or_404(Comment, id=pk)
+    else:
+        messages.success(request, ("That Comment Does Not Belong To You"))
+        return redirect(request.META.get('HTTP_REFERER'))
+
+
 # account settings
 @login_required
 def edit_posts(request):
